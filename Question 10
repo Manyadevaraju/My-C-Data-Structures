@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *img;
+int W, H;
+
+int get(int x, int y) { return img[y*W + x]; }
+void set(int x, int y, int val) { img[y*W + x] = val; }
+
+int main() {
+    printf("Enter width and height: ");
+    scanf("%d %d", &W, &H);
+
+    img = malloc(W * H * sizeof(int));
+
+    printf("Enter pixel values:\n");
+    for (int i=0;i<H;i++)
+        for (int j=0;j<W;j++)
+            scanf("%d", &img[i*W + j]);
+
+    printf("Image matrix:\n");
+    for (int i=0;i<H;i++) {
+        for (int j=0;j<W;j++)
+            printf("%d ", get(j,i));
+        printf("\n");
+    }
+
+    free(img);
+}
