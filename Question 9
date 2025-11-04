@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char** split(char *str, char delim, int *count) {
+    char **tokens = NULL;
+    char *start = str, *p = str;
+    *count = 0;
+    while (1) {
+        if (*p == delim || *p == '\0') {
+            int len = p - start;
+            tokens = realloc(tokens, (*count + 1) * sizeof(char*));
+            tokens[*count] = malloc(len + 1);
+            strncpy(tokens[*count], start, len);
+            tokens[*count][len] = '\0';
+            (*count)++;
+            if (*p == '\0') break;
+            start = p + 1;
+        }
+        p++;
+    }
+    return tokens;
+}
