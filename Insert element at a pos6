@@ -1,0 +1,27 @@
+// Insert element at a given position
+#include <stdio.h>
+
+int main() {
+    printf("NAME : MANYA DEVARAJ\n");
+
+    int arr[10] = {1, 2, 3, 4, 5};
+    int n = 5, pos, val, i;
+
+    printf("Enter position to insert (1 to %d): ", n + 1);
+    scanf("%d", &pos);
+
+    printf("Enter value to insert: ");
+    scanf("%d", &val);
+
+    for (i = n; i >= pos; i--)
+        arr[i] = arr[i - 1];
+
+    arr[pos - 1] = val;  
+    n++; 
+
+    printf("\nArray after insertion:\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
