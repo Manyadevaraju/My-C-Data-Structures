@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+void insert(Node **head, int val) {
+    Node *n = malloc(sizeof(Node));
+    n->data = val;
+    n->next = *head;
+    *head = n;
+}
+
+void deleteKthFromEnd(Node **head, int k) {
+    Node *fast = *head, *slow = *head, *prev = NULL;
+    for (int i = 0; i < k; i++) fast = fast->next;
+    while (fast) {
+        fast = fast->next;
+        prev = slow;
+        slow = slow->next;
+    }
+    if (!prev) *head = (*head)->next;
+    else prev->next = slow->next;
+    free(slow);
+}
+
+void printList(Node *h) {
+    while (h) { printf("%d ", h->data); h = h->next; }
+    printf("\n");
+}
+
+int main() {
+    Node *head = NULL;
+    for (int i = 5; i >= 1; i--) insert(&head, i);
+    printList(head);
+    deleteKthFromEnd(&head, 2);
+    printList(head);
+    while (head) { Node *t = head; head = head->next; free(t); }
+}
