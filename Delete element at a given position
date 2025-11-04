@@ -1,0 +1,24 @@
+// Delete element at a given position
+#include <stdio.h>
+
+int main() {
+    printf("NAME : MANYA DEVARAJ\n USN:1SV24CS074\n");
+
+    int arr[10] = {10, 20, 30, 40, 50};
+    int n = 5, pos, i;
+
+    printf("Enter position to delete (1 to %d): ", n);
+    scanf("%d", &pos);
+
+    
+    for (i = pos - 1; i < n - 1; i++)
+        arr[i] = arr[i + 1];
+
+    n--; 
+
+    printf("\nArray after deletion:\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
