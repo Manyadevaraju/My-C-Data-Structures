@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* getLine() {
+    char *line = NULL, ch;
+    int len = 0;
+    while ((ch = getchar()) != '\n' && ch != EOF) {
+        line = realloc(line, len + 2);
+        line[len++] = ch;
+    }
+    if (line) line[len] = '\0';
+    return line;
+}
+
+int main() {
+    printf("Enter a line: ");
+    char *s = getLine();
+    printf("You entered: %s\n", s);
+    free(s);
+}
