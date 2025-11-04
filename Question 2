@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* my_strdup(char *src) {
+    char *dup, *d;
+    int len = 0;
+    while (src[len]) len++;
+
+    dup = (char*) malloc((len + 1) * sizeof(char));
+    if (!dup) return NULL;
+
+    d = dup;
+    while (*src)
+        *d++ = *src++;
+    *d = '\0';
+
+    return dup;
+}
+
+int main() {
+    char str[] = "Hello C!";
+    char *copy = my_strdup(str);
+    printf("Copied: %s\n", copy);
+    free(copy);
+}
